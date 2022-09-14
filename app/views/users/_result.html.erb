@@ -1,0 +1,13 @@
+<div class="col-4">
+  <%= render 'layouts/messages' %>
+</div>
+
+<% if @stock %>
+  <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Symbol: <%= @stock.ticker %></li>
+      <li class="list-group-item">Name: <%= @stock.name %></li>
+      <li class="list-group-item">Price: <%= @stock.last_price %></li>
+    </ul>
+  </div>
+<% end %>

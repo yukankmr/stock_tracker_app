@@ -3,7 +3,7 @@ body {
 }
 
 .search-area {
-    padding: 50px 0rem 1.5rem;
+    padding: 50px 0rem 1rem;
 }
 
 .no-right-padding {
@@ -12,4 +12,12 @@ body {
 
 .no-left-padding {
     padding-left: 0 !important;
+}
+
+.logout-button {
+    margin-right: 5px;
+}
+
+#results {
+    margin-bottom: 1rem;
 }

@@ -3,25 +3,39 @@
 </div>
 
 <% if @stock %>
-  <ul class="list-group list-group-horizontal">
-    <li class="list-group-item">Symbol: <%= @stock.ticker %></li>
-    <li class="list-group-item">Name: <%= @stock.name %></li>
-    <li class="list-group-item">Price: <%= @stock.last_price %></li>
-    <% if current_user.can_track_stock?(@stock.ticker) %>
-      <li class="d-flex justify-content-between align-items-center">
-        <%= link_to 'Add to portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker),
-                                        class: "btn btn-success", method: :post %>
-    <% else %>
-      <span class="badge bg-primary">
-        You are already tracking
-        <% if !current_user.under_stock_limit? %>
-          10 stocks
-        <% end %>
-        <% if current_user.stock_already_tracked?(@stock.ticker) %>
-          this stock
-        <% end %>
-      </span>
-    <% end %>
-      </li>
-   </ul>
+  <div class="card card-header col-md-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @stock.ticker %></td>
+          <td><%= @stock.name %></td>
+          <td><%= @stock.last_price %></td>
+          <td>
+          <% if current_user.can_track_stock?(@stock.ticker) %>
+            <%= link_to 'Add to portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker),
+                                            class: "btn btn-sm btn-success", method: :post %>
+          <% else %>
+            <span class="badge bg-primary">
+              You are already tracking
+              <% if !current_user.under_stock_limit? %>
+                10 stocks
+              <% end %>
+              <% if current_user.stock_already_tracked?(@stock.ticker) %>
+                this stock
+              <% end %>
+            </span>
+          <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 <% end %>
